@@ -25,7 +25,7 @@
 
 ## 🎥 Demo
 
-https://www.loom.com/share/your-demo-video-url  
+[live Project Demo  ](https://youtu.be/8PevofcLXPw)
 <!-- Replace with actual Loom/YouTube video -->
 
 
