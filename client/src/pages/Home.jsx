@@ -132,7 +132,7 @@ const LandingPage = () => {
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
                       <div className="flex items-center gap-4">
-                        <AITrainerAvatar trainer={aiTrainers[2]} size="large" />
+                        <AITrainerAvatar trainer={aiTrainers[2]} size="medium" />
                         <div>
                           <h3 className="text-xl font-bold">{aiTrainers[2].name}</h3>
                           <p className="text-blue-400">{aiTrainers[2].role}</p>
