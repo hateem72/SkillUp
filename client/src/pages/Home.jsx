@@ -79,13 +79,13 @@ const LandingPage = () => {
                 
                 <div className="flex flex-wrap gap-4">
                   <Link
-                    to="/signup"
+                    to="/auth"
                     className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-purple-500/30 flex items-center gap-2 hover:-translate-y-1"
                   >
                     Get Started <FaArrowRight />
                   </Link>
                   <Link
-                    to="/login"
+                    to="/auth"
                     className="bg-gray-800 hover:bg-gray-700 border-2 border-gray-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-1"
                   >
                     Sign In
