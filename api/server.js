@@ -22,12 +22,12 @@ const connect = async () => {
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173', // Frontend URL
+  origin: process.env.CLIENT_URL , // Frontend URL
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
-app.options('*', cors({ origin: "http://localhost:5173", credentials: true }));
+app.options('*', cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -43,7 +43,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(5000, () => {
+app.listen(process.env.PORT, () => {
   connect();
-  console.log("Backend server is running on port 5000!");
+  console.log("Backend server is running !");
 });
