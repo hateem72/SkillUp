@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaSignInAlt, FaUserPlus, FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import { FaSignInAlt, FaUserPlus, FaUser, FaEnvelope, FaLock, FaCheckCircle } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { registerUser, loginUser } from "../utils/service";
 
@@ -9,6 +9,7 @@ function AuthPage() {
   const [formData, setFormData] = useState({ username: "", email: "", password: "" });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showSignupSuccess, setShowSignupSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handleAuth = async (e) => {
@@ -25,7 +26,8 @@ function AuthPage() {
         navigate("/dashboard");
       } else {
         const response = await registerUser(formData);
-        navigate("/");
+        setShowSignupSuccess(true);
+        setFormData({ username: "", email: "", password: "" });
       }
     } catch (err) {
       console.error("Authentication error:", err);
@@ -39,8 +41,14 @@ function AuthPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const closeSuccessPopup = () => {
+    setShowSignupSuccess(false);
+    setIsLogin(true);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-950 flex items-center justify-center p-4">
+      {/* Background animation bubbles */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         {[...Array(5)].map((_, i) => (
           <motion.div
@@ -67,6 +75,46 @@ function AuthPage() {
         ))}
       </div>
 
+      {/* Success Popup */}
+      <AnimatePresence>
+        {showSignupSuccess && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-gray-800 border border-gray-700 rounded-xl p-6 max-w-sm w-full shadow-2xl"
+            >
+              <div className="text-center">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-4"
+                >
+                  <FaCheckCircle className="text-green-400 text-3xl" />
+                </motion.div>
+                <h3 className="text-xl font-bold text-white mb-2">Signup Successful!</h3>
+                <p className="text-gray-300 mb-6">
+                  Your account has been created successfully. You can now login to proceed.
+                </p>
+                <button
+                  onClick={closeSuccessPopup}
+                  className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-xl font-medium hover:from-blue-700 hover:to-teal-600 transition-all"
+                >
+                  Go to Login
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Main Auth Form */}
       <div className="container mx-auto max-w-md relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
