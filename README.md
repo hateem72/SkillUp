@@ -1,4 +1,4 @@
-# 🎙️ SpeakUp AI — Master Professional Communication with AI
+# 🎙️ SkillUp AI (**Also known as SpeakUp Ai**)— Master Professional Communication with AI
 ![cover](https://github.com/user-attachments/assets/d2c04728-e6fd-4bc6-98b2-038b21e49d95)
 
 
